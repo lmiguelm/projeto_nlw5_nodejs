@@ -33,8 +33,12 @@ app.use(settingsRoutes);
 app.use(userRoutes);
 app.use(messagesRoutes);
 
-app.get('/', (_, res) => {
+app.get('/client', (_, res) => {
   return res.render('html/client.html');
+});
+
+app.get('/admin', (_, res) => {
+  return res.render('html/admin.html');
 });
 
 io.on('connection', (socket: Socket) => {
