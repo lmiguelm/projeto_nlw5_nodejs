@@ -6,16 +6,17 @@ config();
 import connection from './database';
 connection();
 
-import { routes } from './routes';
-
 import express from 'express';
 const app = express();
-app.use(express.json());
-app.use(routes);
 
-app.get('/', (_, res) => {
-  return res.json({ message: 'Hello NLW 05' });
-});
+import { settingsRoutes } from './routes/settings.routes';
+import { userRoutes } from './routes/user.routes';
+import { messagesRoutes } from './routes/messages.routes';
+
+app.use(express.json());
+app.use(settingsRoutes);
+app.use(userRoutes);
+app.use(messagesRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server running at port ${process.env.PORT}`);
