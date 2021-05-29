@@ -2,7 +2,7 @@ import { getCustomRepository, Repository } from 'typeorm';
 import { User } from '../entities/User';
 import { UsersRepository } from '../repositories/UsersRepository';
 
-export class UserService {
+export class UsersService {
   private repository: Repository<User>;
 
   constructor() {
@@ -20,5 +20,9 @@ export class UserService {
     await this.repository.save(user);
 
     return user;
+  }
+
+  async findByEmail(email: string) {
+    return await this.repository.findOne({ email });
   }
 }
